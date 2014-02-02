@@ -4,7 +4,9 @@
  */
 package visualperson;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  *
@@ -32,6 +34,17 @@ public class PersonHashMap {
                 System.out.println("No result");
             }
         }
-        
-    
+     public void printAllPerson (){
+        Collection<Person> coll = myMap.values();
+        Iterator<Person> it = coll.iterator();
+        Person temp;
+      while(it.hasNext()){
+         temp = it.next();
+         System.out.println("-------------------");
+         printPerson(temp.getMail());
+         System.out.println("-------------------");
+      }
+           
+        }   
+
 }

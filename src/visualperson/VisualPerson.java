@@ -7,6 +7,8 @@ package visualperson;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Collection;
+import java.util.Iterator;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -30,6 +32,7 @@ public class VisualPerson extends JFrame{
     JComboBox genderCombo = new JComboBox(comboContent);
     JButton addButton = new JButton ("Add");
     JButton printButton = new JButton ("Print");
+    JButton printAllButton = new JButton ("Print All");
     
     public VisualPerson(){
         super();
@@ -46,8 +49,10 @@ public class VisualPerson extends JFrame{
         this.add(genderCombo);
         this.add(addButton);
         this.add(printButton);
+        this.add(printAllButton);
         addButton.addActionListener(new AddAction());
         printButton.addActionListener(new PrintAction());
+        printAllButton.addActionListener(new PrintAllAction());
         
     }
     public void clearForm(){
@@ -77,7 +82,7 @@ public class VisualPerson extends JFrame{
             Person temp = new Person (fName, lName, gender, age, mail);
             myMap.addPerson(temp);
             myMap.printPerson(mail);
-            clearForm();
+            //clearForm();
         }
         
     }
@@ -87,7 +92,18 @@ public class VisualPerson extends JFrame{
         public void actionPerformed(ActionEvent ae) {
             String mail = mailField.getText();
             myMap.printPerson(mail);
-            clearForm();
+            //clearForm();
+        }
+        
+    }
+    class PrintAllAction implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+           
+           myMap.printAllPerson();
+            //clearForm();
+          
         }
         
     }
