@@ -101,7 +101,7 @@ public class VisualPerson extends JFrame{
         @Override
         public void actionPerformed(ActionEvent ae) {
            
-           myMap.printAllPerson();
+         myMap.printAllPerson();
             //clearForm();
           
         }

@@ -4,6 +4,7 @@
  */
 package visualperson;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -46,5 +47,20 @@ public class PersonHashMap {
       }
            
         }   
-//sdfghjkl;'
+    public void sortedPrint(){
+        ArrayList<Person> unsorted = new ArrayList<Person>();
+        ArrayList<Person> sorted = new ArrayList<Person>(); 
+        unsorted.addAll(myMap.values());
+       
+        for (int i=0; i<unsorted.size(); i++){
+           for (int j=0; j<sorted.size(); j++){
+                if(unsorted.get(i).getAge() < sorted.get(j).getAge()){
+                    sorted.add(j,unsorted.get(i));
+                }
+            }
+        }
+        
+        
+        
+    }
 }
