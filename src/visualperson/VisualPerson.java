@@ -7,8 +7,6 @@ package visualperson;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collection;
-import java.util.Iterator;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -18,27 +16,29 @@ import javax.swing.JTextField;
  *
  * @author fmi
  */
-public class VisualPerson extends JFrame{ 
+public class VisualPerson extends JFrame {
 
     /**
      * @param args the command line arguments
      */
     PersonHashMap myMap = new PersonHashMap();
-    JTextField fNameField = new JTextField("first name",20);
-    JTextField lNameField = new JTextField("last name",20);
-    JTextField ageField = new JTextField("age",20);
-    JTextField mailField = new JTextField("mail",20);
-    String [] comboContent = {"","Male","Female"};
+    JTextField fNameField = new JTextField("first name", 20);
+    JTextField lNameField = new JTextField("last name", 20);
+    JTextField ageField = new JTextField("age", 20);
+    JTextField mailField = new JTextField("mail", 20);
+    String[] comboContent = {"", "Male", "Female"};
     JComboBox genderCombo = new JComboBox(comboContent);
-    JButton addButton = new JButton ("Add");
-    JButton printButton = new JButton ("Print");
-    JButton printAllButton = new JButton ("Print All");
-    
-    public VisualPerson(){
+    JButton addButton = new JButton("Add");
+    JButton printButton = new JButton("Print");
+    JButton printAllButton = new JButton("Print All");
+    JButton printSortedButton = new JButton("Print Sorted");
+
+    public VisualPerson() {
         super();
         init();
     }
-    public void init(){
+
+    public void init() {
         this.setSize(300, 300);
         this.setLayout(new FlowLayout());
         this.setResizable(false);
@@ -50,43 +50,47 @@ public class VisualPerson extends JFrame{
         this.add(addButton);
         this.add(printButton);
         this.add(printAllButton);
+        this.add(printSortedButton);
         addButton.addActionListener(new AddAction());
         printButton.addActionListener(new PrintAction());
         printAllButton.addActionListener(new PrintAllAction());
-        
+        printSortedButton.addActionListener(new PrintSortedAction());
+
     }
-    public void clearForm(){
+
+    public void clearForm() {
         fNameField.setText("");
         lNameField.setText("");
         ageField.setText("");
         mailField.setText("");
         genderCombo.setSelectedIndex(0);
     }
-    
-    class AddAction implements ActionListener{
+
+    class AddAction implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
             String fName = fNameField.getText();
             String lName = lNameField.getText();
             String mail = mailField.getText();
-            
+
             char gender;
             int age = Integer.parseInt(ageField.getText());
             int index = genderCombo.getSelectedIndex();
-            if(index == 1){
+            if (index == 1) {
                 gender = 'm';
-            }else{
+            } else {
                 gender = 'f';
             }
-            Person temp = new Person (fName, lName, gender, age, mail);
+            Person temp = new Person(fName, lName, gender, age, mail);
             myMap.addPerson(temp);
-            myMap.printPerson(mail);
+           // myMap.printPerson(mail);
             //clearForm();
         }
-        
+
     }
-    class PrintAction implements ActionListener{
+
+    class PrintAction implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
@@ -94,20 +98,32 @@ public class VisualPerson extends JFrame{
             myMap.printPerson(mail);
             //clearForm();
         }
-        
+
     }
-    class PrintAllAction implements ActionListener{
+
+    class PrintAllAction implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent ae) {
-           
-         myMap.printAllPerson();
-            //clearForm();
-          
+
+            myMap.printAllPerson();
+             //clearForm();
+
         }
-        
+
     }
-    
+    class PrintSortedAction implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent ae) {
+
+          myMap.sortedPrint();
+         //clearForm();
+
+        }
+
+    }
+
     public static void main(String[] args) {
         VisualPerson myFrame = new VisualPerson();
         myFrame.setVisible(true);
