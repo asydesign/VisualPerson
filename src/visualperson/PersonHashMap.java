@@ -51,8 +51,8 @@ public class PersonHashMap {
     }
 
     public void sortedPrint() {
-        ArrayList<Person> unsorted = new ArrayList<Person>();
-        ArrayList<Person> sorted = new ArrayList<Person>();
+        ArrayList<Person> unsorted = new ArrayList<>();
+        ArrayList<Person> sorted = new ArrayList<>();
         unsorted.addAll(myMap.values());
         Person temp;
 
@@ -67,7 +67,8 @@ public class PersonHashMap {
             }
             sorted.add(temp);
             //System.out.print(temp.getAge()+" ");
-            printPerson(temp);
+            printPerson(temp.getMail());
+            System.out.println("-------------------");
             unsorted.remove(temp);
         }
     }
