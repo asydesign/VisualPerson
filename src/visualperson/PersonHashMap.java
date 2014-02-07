@@ -63,13 +63,12 @@ public class PersonHashMap {
                 
                 if (temp.getAge() > unsorted.get(i).getAge()) {
                     temp = unsorted.get(i);
-                    
                 }
             }
             sorted.add(temp);
-            System.out.print(temp.getAge()+" ");
+            //System.out.print(temp.getAge()+" ");
+            printPerson(temp);
             unsorted.remove(temp);
-
         }
     }
 }
